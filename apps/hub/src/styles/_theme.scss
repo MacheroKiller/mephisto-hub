@@ -1,0 +1,66 @@
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: (
+        plain-family: 'Roboto',
+        brand-family: 'Roboto',
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
+      density: 0,
+    )
+  );
+
+  @include mat.theme-overrides(
+    (
+      primary: light-dark(#784b9b, #daa7ff),
+      'on-primary': light-dark(#fff6fe, #4f2371),
+      'primary-container': light-dark(#daa7ff, #be8de2),
+      'on-primary-container': light-dark(#4f2371, #370559),
+      secondary: light-dark(#6b5879, #d6bee4),
+      'on-secondary': light-dark(#fff6fe, #4b3958),
+      'secondary-container': light-dark(#f2daff, #463453),
+      'on-secondary-container': light-dark(#5d4a6b, #cfb7dd),
+      tertiary: light-dark(#974168, #ffa7c9),
+      'on-tertiary': light-dark(#fff7f7, #6c1e44),
+      'tertiary-container': light-dark(#fb93bd, #fb93bd),
+      'on-tertiary-container': light-dark(#60133a, #60133a),
+      error: light-dark(#bb1b1b, #ff7164),
+      'on-error': light-dark(#fff7f6, #4a0002),
+      'error-container': light-dark(#fe4e44, #ac0c12),
+      'on-error-container': light-dark(#570003, #ffb8b0),
+      surface: light-dark(#fff7fd, #100d12),
+      'on-surface': light-dark(#353137, #ebe3eb),
+      'on-surface-variant': light-dark(#635d64, #b0a9b0),
+      'surface-container': light-dark(#f4ebf3, #1c181e),
+      'surface-container-high': light-dark(#eee6ed, #221e24),
+      'surface-container-highest': light-dark(#e8e0e8, #28242a),
+      'surface-container-low': light-dark(#faf1f9, #161217),
+      'surface-container-lowest': light-dark(#ffffff, #000000),
+      'surface-bright': light-dark(#fff7fd, #2f2b30),
+      'surface-dim': light-dark(#e0d8df, #100d12),
+      'surface-variant': light-dark(#e8e0e8, #28242a),
+      'surface-tint': light-dark(#784b9b, #daa7ff),
+      'inverse-surface': light-dark(#100d12, #fff7fd),
+      'inverse-on-surface': light-dark(#a29ba2, #59535a),
+      'inverse-primary': light-dark(#daa7ff, #784b9b),
+      outline: light-dark(#7f7980, #79737a),
+      'outline-variant': light-dark(#b7b0b7, #4b464c),
+      background: light-dark(#fff7fd, #100d12),
+      'on-background': light-dark(#353137, #ebe3eb),
+      scrim: light-dark(#000000, #000000),
+      shadow: light-dark(#000000, #000000),
+    )
+  );
+
+  @include mat.sidenav-overrides(
+    (
+      'container-width': '250px',
+    )
+  );
+}
