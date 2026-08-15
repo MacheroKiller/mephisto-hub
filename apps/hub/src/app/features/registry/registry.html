@@ -9,13 +9,15 @@
   <ul class="registry__list">
     @for (entry of entries(); track entry.code) {
     <li class="registry__row">
-      <span
-        class="registry__dot"
-        [class]="'registry__dot--' + entry.status"
-        aria-hidden="true"
-      ></span>
-      <span class="registry__code">{{ entry.code }}</span>
-      <span class="registry__name">{{ entry.name }}</span>
+      <div class="registry__row__first-column flex-1">
+        <span
+          class="registry__dot"
+          [class]="'registry__dot--' + entry.status"
+          aria-hidden="true"
+        ></span>
+        <span class="registry__code">{{ entry.code }}</span>
+      </div>
+      <span class="registry__name flex-2">{{ entry.name }}</span>
       <span
         class="registry__badge"
         [class]="'registry__badge--' + entry.status"
