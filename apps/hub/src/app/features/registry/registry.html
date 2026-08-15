@@ -1,0 +1,28 @@
+<section class="registry">
+  <header class="registry__header">
+    <span class="registry__title">SYSTEM_REGISTRY</span>
+    <span class="registry__index">
+      INDEX: 001-{{ entries().length.toString().padStart(3, '0') }}
+    </span>
+  </header>
+
+  <ul class="registry__list">
+    @for (entry of entries(); track entry.code) {
+    <li class="registry__row">
+      <span
+        class="registry__dot"
+        [class]="'registry__dot--' + entry.status"
+        aria-hidden="true"
+      ></span>
+      <span class="registry__code">{{ entry.code }}</span>
+      <span class="registry__name">{{ entry.name }}</span>
+      <span
+        class="registry__badge"
+        [class]="'registry__badge--' + entry.status"
+      >
+        {{ entry.status.toUpperCase() }}
+      </span>
+    </li>
+    }
+  </ul>
+</section>

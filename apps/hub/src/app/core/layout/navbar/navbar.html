@@ -1,0 +1,33 @@
+<header class="navbar">
+  <a class="navbar__logo" routerLink="/" aria-label="Mephisto Hub — inicio">
+    M<span class="navbar__logo-dot">·</span>
+  </a>
+
+  <nav class="navbar__links" aria-label="Navegación principal">
+    <a class="navbar__link navbar__link--active" href="#projects"> PROJECTS </a>
+
+    <a class="navbar__link" href="#systems"> SYSTEMS </a>
+
+    <a class="navbar__link" href="#registry"> REGISTRY </a>
+
+    <a class="navbar__link" href="#archive"> ARCHIVE </a>
+  </nav>
+
+  <button
+    class="navbar__toggle"
+    type="button"
+    (click)="toggleTheme($event)"
+    [attr.aria-pressed]="isDark()"
+    aria-label="Cambiar tema claro/oscuro"
+  >
+    @if (isDark()) {
+    <span aria-hidden="true">
+      <mat-icon>light_mode</mat-icon>
+    </span>
+    } @else {
+    <span aria-hidden="true">
+      <mat-icon>dark_mode</mat-icon>
+    </span>
+    }
+  </button>
+</header>

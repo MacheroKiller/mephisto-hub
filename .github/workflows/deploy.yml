@@ -11,6 +11,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/arm64
+          tags: mephisto-hub:latest
+          outputs: type=docker,dest=/tmp/mephisto-hub.tar
+
       - name: Connect to Tailscale
         uses: tailscale/github-action@v3
         with:
@@ -23,13 +34,14 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Copy files to Raspberry Pi
+      - name: Copy image and compose file to Raspberry Pi
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key" \
-            --exclude '.git' --exclude '.github' \
-            ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+          scp -i ~/.ssh/deploy_key /tmp/mephisto-hub.tar \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+          scp -i ~/.ssh/deploy_key docker-compose.yml \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
 
-      - name: Restart containers
+      - name: Load image and restart container
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "cd ${{ secrets.DEPLOY_PATH }} && docker compose up -d --force-recreate"
+            "cd ${{ secrets.DEPLOY_PATH }} && docker load -i mephisto-hub.tar && docker compose up -d --force-recreate"

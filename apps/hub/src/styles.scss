@@ -3,4 +3,9 @@
 @use '@fontsource/roboto/400.css' as roboto-400;
 @use '@fontsource/roboto/500.css' as roboto-500;
 @use '@fontsource/roboto/700.css' as roboto-700;
+@use '@fontsource/space-grotesk/500.css' as space-grotesk-500;
+@use '@fontsource/space-grotesk/700.css' as space-grotesk-700;
+@use '@fontsource/jetbrains-mono/400.css' as jetbrains-mono-400;
+@use '@fontsource/jetbrains-mono/500.css' as jetbrains-mono-500;
 @use './styles/theme';
+@use './styles/typography';

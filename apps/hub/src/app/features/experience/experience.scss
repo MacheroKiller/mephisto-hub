@@ -1,0 +1,112 @@
+.experience {
+  margin: 0 auto;
+  padding: 32px;
+
+  &__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--mat-sys-primary);
+    margin-bottom: 32px;
+  }
+
+  &__timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__entry {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 24px;
+  }
+
+  &__marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--mat-sys-outline);
+    flex-shrink: 0;
+
+    &--current {
+      background-color: var(--mat-sys-primary);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--mat-sys-primary) 25%, transparent);
+    }
+  }
+
+  &__line {
+    width: 1px;
+    flex: 1;
+    background-color: var(--mat-sys-outline-variant);
+    margin-top: 8px;
+  }
+
+  &__entry:last-child &__line {
+    display: none;
+  }
+
+  &__details {
+    padding-bottom: 40px;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  &__dates {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  &__status {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    color: var(--mat-sys-primary);
+    border: 1px solid var(--mat-sys-primary);
+    padding: 2px 6px;
+  }
+
+  &__role {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--mat-sys-on-surface);
+    margin: 0 0 4px;
+  }
+
+  &__company {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--mat-sys-on-surface-variant);
+    margin: 0 0 16px;
+  }
+
+  &__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 20px;
+    margin: 0;
+
+    li {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<section class="contact">
+  <span class="contact__eyebrow">CONTACT</span>
+
+  <h2 class="contact__heading">
+    Open to conversations about roles, collaborations, or the systems behind
+    this hub.
+  </h2>
+
+  <ul class="contact__links">
+    @for (link of links(); track link.href) {
+    <li class="contact__item">
+      <a
+        class="contact__link"
+        [href]="link.href"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="contact__link-label">{{ link.label }}</span>
+        <span class="contact__link-value">{{ link.value }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+</section>

@@ -1,0 +1,37 @@
+<section class="experience">
+  <span class="experience__eyebrow">EXPERIENCE</span>
+
+  <ol class="experience__timeline">
+    @for (entry of entries(); track entry.company + entry.dateRange) {
+    <li class="experience__entry">
+      <div class="experience__marker">
+        <span
+          class="experience__dot"
+          [class.experience__dot--current]="entry.current"
+        ></span>
+        <span class="experience__line" aria-hidden="true"></span>
+      </div>
+
+      <div class="experience__details">
+        <div class="experience__meta">
+          <span class="experience__dates">{{ entry.dateRange }}</span>
+          @if (entry.current) {
+          <span class="experience__status">ACTIVE</span>
+          }
+        </div>
+
+        <h3 class="experience__role">{{ entry.role }}</h3>
+        <p class="experience__company">
+          {{ entry.company }} · {{ entry.location }}
+        </p>
+
+        <ul class="experience__highlights">
+          @for (highlight of entry.highlights; track highlight) {
+          <li>{{ highlight }}</li>
+          }
+        </ul>
+      </div>
+    </li>
+    }
+  </ol>
+</section>

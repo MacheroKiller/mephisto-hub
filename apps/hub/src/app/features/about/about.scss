@@ -1,0 +1,59 @@
+.about {
+  margin: 0 auto;
+  padding: 32px;
+
+  &__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--mat-sys-primary);
+    margin-bottom: 16px;
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    color: var(--mat-sys-on-surface);
+
+    margin: 0 0 32px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__paragraph {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--mat-sys-on-surface-variant);
+    margin: 0;
+  }
+
+  &__signature {
+    background-color: var(--mat-sys-surface-container);
+    border: 1px solid var(--mat-sys-outline-variant);
+    padding: 16px;
+
+    &-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--mat-sys-on-surface-variant);
+      margin-bottom: 8px;
+    }
+
+    &-text {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+    }
+  }
+}
