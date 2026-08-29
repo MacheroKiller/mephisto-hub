@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": false,
-    "paths": {}
+    "paths": {
+      "@mephisto-hub/design-system-tokens": [
+        "./libs/design-system/tokens/src/index.ts"
+      ],
+      "@mephisto-hub/design-system-ui": ["./libs/design-system/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
