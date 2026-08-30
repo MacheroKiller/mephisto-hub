@@ -24,6 +24,10 @@ export default [
               sourceTag: 'scope:hub',
               onlyDependOnLibsWithTags: ['scope:shared', 'scope:hub'],
             },
+            {
+              sourceTag: 'scope:teamflow',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:teamflow'],
+            },
           ],
         },
       ],
