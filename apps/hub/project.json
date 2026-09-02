@@ -40,7 +40,13 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/hub/src/environments/environment.ts",
+              "with": "apps/hub/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "optimization": false,
@@ -59,7 +65,7 @@
         },
         "development": {
           "buildTarget": "hub:build:development",
-          "proxyConfig": "apps/teamflow/proxy.conf.json"
+          "proxyConfig": "apps/hub/proxy.conf.json"
         }
       }
     },

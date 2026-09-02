@@ -9,7 +9,6 @@ import { Navbar, NavLink } from '@mephisto-hub/design-system-ui';
 import { ProjectRegistryService } from './features/registry/service/project-registry.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { mapManifestToRegistryEntry } from './features/registry/mapper/project-manifest.mapper';
-import { tap } from 'rxjs';
 
 const HUB_LINKS: NavLink[] = [
   { label: 'PROJECTS', href: '#projects', type: 'anchor' },
@@ -30,12 +29,9 @@ export class App {
   protected title = 'hub';
   protected readonly hubLinks = HUB_LINKS;
 
-  projectRegistryList = toSignal(
-    this.projectRegistry.listAll().pipe(tap((value) => console.log(value))),
-    {
-      initialValue: [],
-    },
-  );
+  projectRegistryList = toSignal(this.projectRegistry.listAll(), {
+    initialValue: [],
+  });
   projectRegistryComputed = computed(() =>
     this.projectRegistryList().map(mapManifestToRegistryEntry),
   );
