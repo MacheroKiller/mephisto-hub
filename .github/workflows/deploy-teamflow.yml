@@ -6,8 +6,7 @@ on:
     paths:
       - 'apps/teamflow/**'
       - 'libs/design-system/**'
-      - 'Dockerfile.teamflow'
-      - 'nginx.teamflow.conf'
+      - 'infra/teamflow/**'
       - '.github/workflows/deploy-teamflow.yml'
 
 jobs:
@@ -45,7 +44,7 @@ jobs:
         run: |
           scp -i ~/.ssh/deploy_key /tmp/teamflow-frontend.tar \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH_TEAMFLOW_FRONTEND }}/
-          scp -i ~/.ssh/deploy_key docker-compose.teamflow-frontend.yml \
+          scp -i ~/.ssh/deploy_key infra/teamflow/docker-compose.yml \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH_TEAMFLOW_FRONTEND }}/docker-compose.yml
 
       - name: Load image and restart container

@@ -1,4 +1,4 @@
-name: Deploy to Raspberry Pi
+name: Deploy Hub
 
 on:
   push:
@@ -6,11 +6,8 @@ on:
     paths:
       - 'apps/hub/**'
       - 'libs/design-system/**'
-      - 'Dockerfile'
-      - 'nginx.conf'
-      - 'docker-compose.yml'
-      - '.github/workflows/deploy.yml'
-
+      - 'infra/hub/**'
+      - '.github/workflows/deploy-hub.yml'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -41,12 +38,12 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Copy image and compose file to Raspberry Pi
+            - name: Copy image and compose file to Raspberry Pi
         run: |
           scp -i ~/.ssh/deploy_key /tmp/mephisto-hub.tar \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
-          scp -i ~/.ssh/deploy_key docker-compose.yml \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+          scp -i ~/.ssh/deploy_key infra/hub/docker-compose.yml \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/docker-compose.yml
 
       - name: Load image and restart container
         run: |

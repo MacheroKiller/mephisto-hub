@@ -13,6 +13,6 @@ RUN bun nx build teamflow --configuration=production
 FROM nginx:alpine AS serve
 
 COPY --from=build /app/dist/apps/teamflow/browser /usr/share/nginx/html
-COPY nginx.teamflow.conf /etc/nginx/conf.d/default.conf
+COPY infra/teamflow/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

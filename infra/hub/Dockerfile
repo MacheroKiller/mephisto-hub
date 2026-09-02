@@ -11,8 +11,7 @@ RUN bun nx build hub --configuration=production
 
 # ---- Stage 2: Serve ----
 FROM nginx:alpine AS serve
-
 COPY --from=build /app/dist/apps/hub/browser /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY infra/hub/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
