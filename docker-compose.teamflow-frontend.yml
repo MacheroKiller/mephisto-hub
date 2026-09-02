@@ -1,0 +1,13 @@
+services:
+  teamflow-frontend:
+    image: teamflow-frontend:latest
+    container_name: teamflow-frontend
+    restart: unless-stopped
+    ports:
+      - '8083:80'
+    networks:
+      - teamflow-backend_internal
+
+networks:
+  teamflow-backend_internal:
+    external: true

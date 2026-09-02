@@ -1,0 +1,40 @@
+name: Deploy TeamFlow Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/teamflow/**'
+      - 'libs/design-system/**'
+      - 'Dockerfile.teamflow'
+      - 'nginx.teamflow.conf'
+      - '.github/workflows/deploy-teamflow.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.teamflow
+          platforms: linux/arm64
+          tags: teamflow-frontend:latest
+          outputs: type=docker,dest=/tmp/teamflow-frontend.tar
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTH_KEY_TEAMFLOW_FRONTEND }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{

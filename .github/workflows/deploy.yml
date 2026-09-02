@@ -3,6 +3,13 @@ name: Deploy to Raspberry Pi
 on:
   push:
     branches: [main]
+    paths:
+      - 'apps/hub/**'
+      - 'libs/design-system/**'
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'docker-compose.yml'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
