@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile.teamflow
+          file: infra/teamflow/Dockerfile
           platforms: linux/arm64
           tags: teamflow-frontend:latest
           outputs: type=docker,dest=/tmp/teamflow-frontend.tar

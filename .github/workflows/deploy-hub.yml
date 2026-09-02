@@ -22,6 +22,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: infra/hub/Dockerfile
           platforms: linux/arm64
           tags: mephisto-hub:latest
           outputs: type=docker,dest=/tmp/mephisto-hub.tar
@@ -38,7 +39,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-            - name: Copy image and compose file to Raspberry Pi
+      - name: Copy image and compose file to Raspberry Pi
         run: |
           scp -i ~/.ssh/deploy_key /tmp/mephisto-hub.tar \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
