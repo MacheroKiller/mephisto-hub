@@ -1,0 +1,31 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  padding: 32px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--mat-sys-on-surface);
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  &__error {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--mat-sys-error);
+    margin: 0;
+  }
+}

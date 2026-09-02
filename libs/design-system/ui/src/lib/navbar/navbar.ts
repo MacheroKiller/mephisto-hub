@@ -1,19 +1,27 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, signal, input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
-const THEME_STORAGE_KEY = 'mephisto-hub-theme';
+export interface NavLink {
+  label: string;
+  href: string;
+  type?: 'route' | 'anchor';
+}
 
+const THEME_STORAGE_KEY = 'mephisto-hub-theme';
 type ThemePreference = 'dark' | 'light';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
-  imports: [MatIconModule],
+  imports: [MatIconModule, RouterLink, RouterLinkActive],
 })
 export class Navbar {
-  protected readonly isDark = signal(this.readInitialPreference() === 'dark');
+  readonly links = input<NavLink[]>([]);
+  readonly homeLabel = input<string>('Inicio');
 
+  protected readonly isDark = signal(this.readInitialPreference() === 'dark');
   protected readonly toggleThemeEffect = effect(() => {
     this.applyToDocument(this.isDark() ? 'dark' : 'light');
   });
@@ -21,13 +29,11 @@ export class Navbar {
   protected toggleTheme(event: MouseEvent): void {
     const nextPreference: ThemePreference = this.isDark() ? 'light' : 'dark';
 
-    // Fallback si el navegador no soporta View Transitions (ej. Firefox aún incompleto)
     if (!document.startViewTransition) {
       this.applyPreference(nextPreference);
       return;
     }
 
-    // Coordenadas del click, para que la expansión nazca desde el botón
     const x = event.clientX;
     const y = event.clientY;
     const endRadius = Math.hypot(

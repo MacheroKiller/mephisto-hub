@@ -1,18 +1,20 @@
 <header class="navbar">
-  <a class="navbar__logo" routerLink="/" aria-label="Mephisto Hub — inicio">
+  <a class="navbar__logo" [routerLink]="'/'" [attr.aria-label]="homeLabel()">
     M<span class="navbar__logo-dot">·</span>
   </a>
-
   <nav class="navbar__links" aria-label="Navegación principal">
-    <a class="navbar__link navbar__link--active" href="#projects"> PROJECTS </a>
-
-    <a class="navbar__link" href="#systems"> SYSTEMS </a>
-
-    <a class="navbar__link" href="#registry"> REGISTRY </a>
-
-    <a class="navbar__link" href="#archive"> ARCHIVE </a>
+    @for (link of links(); track link.href) {
+    <a
+      class="navbar__link"
+      [routerLink]="link.href"
+      routerLinkActive="navbar__link--active"
+      [routerLinkActiveOptions]="{
+      exact: true }"
+    >
+      {{ link.label }}
+    </a>
+    }
   </nav>
-
   <button
     class="navbar__toggle"
     type="button"

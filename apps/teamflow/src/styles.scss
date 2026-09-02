@@ -5,6 +5,12 @@
 @use '@fontsource/space-grotesk/700.css' as space-grotesk-700;
 @use '@fontsource/jetbrains-mono/400.css' as jetbrains-mono-400;
 @use '@fontsource/jetbrains-mono/500.css' as jetbrains-mono-500;
-@use 'theme';
 @use 'typography';
 @use 'icons';
+@use './styles/theme';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

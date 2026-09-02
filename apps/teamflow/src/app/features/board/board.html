@@ -1,0 +1,43 @@
+<section class="board">
+  @for (column of columns; track column.status) {
+  <div class="board__column">
+    <header class="board__column-header">
+      <span class="board__column-label">{{ column.label }}</span>
+      <span class="board__column-count"
+        >({{ storiesByStatus(column.status)().length }})</span
+      >
+    </header>
+
+    <div
+      class="board__column-body"
+      cdkDropList
+      [id]="'column-' + column.status"
+      [cdkDropListData]="storiesByStatus(column.status)()"
+      [cdkDropListConnectedTo]="connectedLists()"
+      (cdkDropListDropped)="onDrop($event, column.status)"
+    >
+      @if (storiesByStatus(column.status)().length === 0) {
+      <p class="board__empty">// nothing here yet</p>
+      } @for (story of storiesByStatus(column.status)(); track story.id) {
+      <article
+        class="story-card"
+        [class.story-card--done]="story.status === 'DONE'"
+        cdkDrag
+        [cdkDragData]="story"
+      >
+        <div class="story-card__header">
+          <span class="story-card__id">#{{ story.id }}</span>
+          <span class="story-card__avatar"
+            >{{ initials(story.assigneeId) }}</span
+          >
+        </div>
+        <h3 class="story-card__title">{{ story.title }}</h3>
+        @if (story.description) {
+        <p class="story-card__description">{{ story.description }}</p>
+        }
+      </article>
+      }
+    </div>
+  </div>
+  }
+</section>

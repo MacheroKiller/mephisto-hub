@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+
+  @include mat.theme(
+    (
+      color: mat.$blue-palette,
+      typography: (
+        plain-family: 'Roboto',
+        brand-family: 'Roboto',
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
+      density: 0,
+    )
+  );
+
+  @include mat.theme-overrides(
+    (
+      primary: light-dark(#3a5fcd, #7aa2f7),
+      'on-primary': light-dark(#ffffff, #002e69),
+      'primary-container': light-dark(#7aa2f7, #274a9e),
+      'on-primary-container': light-dark(#002e69, #d6e2ff),
+      secondary: light-dark(#565f71, #bec6dc),
+      'on-secondary': light-dark(#ffffff, #283141),
+      'secondary-container': light-dark(#dae2f9, #3e4759),
+      'on-secondary-container': light-dark(#131c2b, #dae2f9),
+      tertiary: light-dark(#6d5876, #dabde0),
+      'on-tertiary': light-dark(#ffffff, #3d2946),
+      'tertiary-container': light-dark(#f6d9fc, #55415e),
+      'on-tertiary-container': light-dark(#271430, #f6d9fc),
+      error: light-dark(#ba1a1a, #ffb4ab),
+      'on-error': light-dark(#ffffff, #690005),
+      'error-container': light-dark(#ffdad6, #93000a),
+      'on-error-container': light-dark(#410002, #ffdad6),
+      surface: light-dark(#f9f9ff, #111318),
+      'on-surface': light-dark(#191c20, #e2e2e9),
+      'on-surface-variant': light-dark(#44474e, #c4c6d0),
+      'surface-container': light-dark(#eef0f6, #1d2024),
+      'surface-container-high': light-dark(#e8eaf1, #272a2f),
+      'surface-container-highest': light-dark(#e2e4eb, #32353a),
+      'surface-container-low': light-dark(#f3f3fa, #191c20),
+      'surface-container-lowest': light-dark(#ffffff, #0c0e13),
+      'surface-bright': light-dark(#f9f9ff, #37393e),
+      'surface-dim': light-dark(#d9d9e0, #111318),
+      'surface-variant': light-dark(#e0e2ec, #44474e),
+      'surface-tint': light-dark(#3a5fcd, #7aa2f7),
+      'inverse-surface': light-dark(#2e3036, #e2e2e9),
+      'inverse-on-surface': light-dark(#eff0f7, #2e3036),
+      'inverse-primary': light-dark(#aac3ff, #3a5fcd),
+      outline: light-dark(#74777f, #8e9099),
+      'outline-variant': light-dark(#c4c6d0, #44474e),
+      background: light-dark(#f9f9ff, #111318),
+      'on-background': light-dark(#191c20, #e2e2e9),
+      scrim: light-dark(#000000, #000000),
+      shadow: light-dark(#000000, #000000),
+    )
+  );
+}

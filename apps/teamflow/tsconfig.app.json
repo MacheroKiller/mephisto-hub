@@ -4,6 +4,6 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/app/core/auth/auth.service.spec.ts /service", "src/app/core/auth/auth.service.spec.ts service"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
 }

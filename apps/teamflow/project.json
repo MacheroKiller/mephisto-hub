@@ -58,7 +58,8 @@
           "buildTarget": "teamflow:build:production"
         },
         "development": {
-          "buildTarget": "teamflow:build:development"
+          "buildTarget": "teamflow:build:development",
+          "proxyConfig": "apps/teamflow/proxy.conf.json"
         }
       }
     },

@@ -4,5 +4,9 @@
     "outDir": "../../dist/out-tsc",
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/app/core/auth/auth.service.spec.ts /service"
+  ]
 }
