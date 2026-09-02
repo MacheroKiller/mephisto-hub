@@ -37,4 +37,18 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{
+          echo "${{ secrets.DEPLOY_SSH_KEY_TEAMFLOW_FRONTEND }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copy image and compose file to Raspberry Pi
+        run: |
+          scp -i ~/.ssh/deploy_key /tmp/teamflow-frontend.tar \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH_TEAMFLOW_FRONTEND }}/
+          scp -i ~/.ssh/deploy_key docker-compose.teamflow-frontend.yml \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH_TEAMFLOW_FRONTEND }}/docker-compose.yml
+
+      - name: Load image and restart container
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH_TEAMFLOW_FRONTEND }} && docker load -i teamflow-frontend.tar && docker compose up -d --force-recreate"
