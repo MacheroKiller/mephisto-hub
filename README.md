@@ -1,5 +1,8 @@
 # Mephisto Hub
 
+![Deploy Hub](https://github.com/MacheroKiller/mephisto-hub/actions/workflows/deploy-hub.yml/badge.svg)
+![Deploy TeamFlow](https://github.com/MacheroKiller/mephisto-hub/actions/workflows/deploy-teamflow.yml/badge.svg)
+
 Personal developer ecosystem: an Nx monorepo hosting a central portfolio/hub application and its satellite projects, all built on shared Angular libraries and self-hosted end-to-end.
 
 The Hub itself doubles as a project registry — it reads a catalog served by [`mephisto-hub-backend`](https://github.com/MacheroKiller/mephisto-hub-backend) and renders it as an entry point that links out to each satellite project (currently [TeamFlow](https://teamflow.amuryllis.com)).
@@ -10,11 +13,11 @@ The Hub itself doubles as a project registry — it reads a catalog served by [`
 
 This monorepo contains the **Angular frontend** for the whole ecosystem — the Hub and every satellite app share it, along with a common design system. Backends are intentionally kept in separate repositories (Java/Maven doesn't benefit from living alongside a TypeScript monorepo, and it keeps each service's CI pipeline independent):
 
-| Component                 | Repo                                                                            | Description                                                         |
-| ------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Hub + satellite frontends | _(this repo)_                                                                   | Nx monorepo — Angular apps + shared libs                            |
-| Hub backend               | [`mephisto-hub-backend`](https://github.com/MacheroKiller/mephisto-hub-backend) | Spring Boot — serves the project registry/catalog                   |
-| TeamFlow backend          | [`teamflow-backend`](https://github.com/MacheroKiller/teamflow-backend)         | Spring Boot — TeamFlow's own domain (workspaces, projects, stories) |
+| Component                 | Repo                                                                            | Description                                                         | CI/CD                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Hub + satellite frontends | _(this repo)_                                                                   | Nx monorepo — Angular apps + shared libs                            | See badges above                                                                                        |
+| Hub backend               | [`mephisto-hub-backend`](https://github.com/MacheroKiller/mephisto-hub-backend) | Spring Boot — serves the project registry/catalog                   | ![Deploy](https://github.com/MacheroKiller/mephisto-hub-backend/actions/workflows/deploy.yml/badge.svg) |
+| TeamFlow backend          | [`teamflow-backend`](https://github.com/MacheroKiller/teamflow-backend)         | Spring Boot — TeamFlow's own domain (workspaces, projects, stories) | ![Deploy](https://github.com/MacheroKiller/teamflow-backend/actions/workflows/deploy.yml/badge.svg)     |
 
 ## Apps
 
